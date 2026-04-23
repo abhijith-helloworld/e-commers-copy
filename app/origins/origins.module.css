@@ -1,0 +1,179 @@
+.intro {
+  padding: var(--space-4xl) 0;
+  background-color: var(--warm-white);
+  text-align: center;
+}
+
+.introContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.introTitle {
+  font-size: 3rem;
+  margin-bottom: var(--space-xl);
+  color: var(--bark);
+}
+
+.introText {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--bark-light);
+}
+
+.regionsSection {
+  padding: var(--space-4xl) 0;
+  background-color: var(--cream);
+}
+
+.regionsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+}
+
+.regionCard {
+  background: white;
+  padding: var(--space-3xl);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--linen);
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.regionCard:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--terracotta-light);
+}
+
+.regionHeader {
+  margin-bottom: var(--space-xl);
+}
+
+.regionName {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--terracotta);
+  margin-bottom: var(--space-sm);
+  font-weight: 600;
+}
+
+.regionTitle {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  color: var(--bark);
+  line-height: 1.1;
+}
+
+.regionDesc {
+  color: var(--bark-light);
+  line-height: 1.7;
+  font-size: 1rem;
+  margin-bottom: var(--space-xl);
+}
+
+.featuredSpices {
+  border-top: 1px dashed var(--linen-dark);
+  padding-top: var(--space-lg);
+}
+
+.featuredLabel {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--bark-light);
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.spiceTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.spiceTag {
+  background: var(--cream-dark);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  color: var(--bark);
+  font-weight: 500;
+}
+
+.mapSection {
+  padding: var(--space-5xl) 0;
+  background-color: var(--warm-white);
+}
+
+.mapBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.mapContent {
+  max-width: 600px;
+  margin-bottom: var(--space-3xl);
+}
+
+.mapTitle {
+  font-size: 3rem;
+  margin-bottom: var(--space-lg);
+}
+
+.mapText {
+  color: var(--bark-light);
+  font-size: 1.125rem;
+}
+
+.mapGraphic {
+  width: 100%;
+  max-width: 1000px;
+  height: 500px;
+  position: relative;
+  background: var(--linen);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.worldMap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.mapImg {
+  opacity: 0.2;
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+.point {
+  position: absolute;
+  color: var(--terracotta);
+  font-size: 1.5rem;
+  animation: pulse-ring 2s infinite;
+}
+
+.p1 { top: 65%; left: 70%; } /* India */
+.p2 { top: 75%; left: 55%; } /* Madagascar */
+.p3 { top: 40%; left: 50%; } /* Med */
+.p4 { top: 75%; left: 75%; } /* Sri Lanka */
+
+@media (max-width: 1024px) {
+  .regionsGrid { grid-template-columns: 1fr; }
+  .mapGraphic { height: 350px; }
+}
+
+@media (max-width: 768px) {
+  .regionCard { padding: var(--space-xl); }
+  .regionTitle { font-size: 1.75rem; }
+}

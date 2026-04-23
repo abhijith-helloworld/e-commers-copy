@@ -1,0 +1,73 @@
+.container {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4xl) var(--space-xl);
+  background-color: var(--cream);
+  text-align: center;
+}
+
+.content {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+.errorCode {
+  font-size: clamp(6rem, 15vw, 10rem);
+  font-weight: 300;
+  color: var(--terracotta);
+  line-height: 1;
+  font-family: var(--font-serif);
+  margin: 0;
+  text-shadow: var(--shadow-sm);
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--bark);
+  font-weight: 600;
+  margin: 0;
+  font-family: var(--font-serif);
+}
+
+.description {
+  color: var(--bark-light);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin: 0 0 var(--space-md) 0;
+  max-width: 450px;
+}
+
+.button {
+  display: inline-block;
+  background-color: var(--terracotta);
+  color: var(--warm-white);
+  padding: 1rem 2.5rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  transition: var(--transition-base);
+  border: 1px solid var(--terracotta);
+  box-shadow: var(--shadow-sm);
+}
+
+.button:hover {
+  background-color: transparent;
+  color: var(--terracotta);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Add a decorative element to match the rustic vibe */
+.decorativeLine {
+  width: 60px;
+  height: 2px;
+  background-color: var(--turmeric);
+  margin: var(--space-sm) 0;
+}

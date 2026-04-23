@@ -1,0 +1,329 @@
+.checkoutContainer {
+  padding: var(--space-5xl) 0;
+  min-height: 100vh;
+  background-color: var(--cream);
+}
+
+.header {
+  margin-bottom: var(--space-4xl);
+  text-align: center;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--bark);
+}
+
+.titleAccent {
+  color: var(--terracotta);
+  font-style: italic;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: var(--space-3xl);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .content {
+    grid-template-columns: 1fr;
+    flex-direction: column-reverse;
+  }
+}
+
+.formSection {
+  background: var(--warm-white);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--linen);
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--bark);
+  margin-bottom: var(--space-md);
+  border-bottom: 1px solid var(--linen);
+  padding-bottom: var(--space-sm);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+@media (max-width: 600px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--bark);
+}
+
+.input {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--linen);
+  border-radius: var(--radius-sm);
+  background-color: var(--cream);
+  font-family: var(--font-sans);
+  color: var(--bark);
+  transition: var(--transition-fast);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 2px rgba(192, 83, 58, 0.1);
+}
+
+.summarySection {
+  background: var(--warm-white);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  position: sticky;
+  top: 100px;
+  border: 1px solid var(--linen);
+  box-shadow: var(--shadow-md);
+}
+
+.cartItems {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  max-height: 40vh;
+  overflow-y: auto;
+  padding-right: var(--space-sm);
+}
+
+.cartItem {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: var(--space-sm);
+  align-items: center;
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px dashed var(--linen);
+}
+
+.itemImage {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  background: var(--cream);
+  overflow: hidden;
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemName {
+  font-weight: 500;
+  color: var(--bark);
+  font-size: 0.95rem;
+}
+
+.itemMeta {
+  font-size: 0.8rem;
+  color: var(--bark-light);
+}
+
+.itemPrice {
+  font-weight: 600;
+  color: var(--terracotta);
+}
+
+.totals {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding-top: var(--space-md);
+  border-top: 2px solid var(--linen);
+  margin-bottom: var(--space-lg);
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  color: var(--bark-light);
+  font-size: 0.95rem;
+}
+
+.totalRow.grandTotal {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--bark);
+  margin-top: var(--space-xs);
+  padding-top: var(--space-xs);
+}
+
+.checkoutBtn {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--terracotta);
+  color: var(--warm-white);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.checkoutBtn:hover {
+  background-color: var(--terracotta-dark);
+}
+
+.checkoutBtn:disabled {
+  background-color: var(--sage-light);
+  cursor: not-allowed;
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--space-3xl) 0;
+  color: var(--bark-light);
+}
+
+.paymentMethods {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.paymentMethod {
+  flex: 1;
+  padding: 1rem;
+  border: 1px solid var(--linen);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  color: var(--bark-light);
+}
+
+.paymentMethod.active {
+  border-color: var(--terracotta);
+  color: var(--terracotta);
+  background-color: rgba(192, 83, 58, 0.05);
+}
+
+/* Custom Popup Overlay */
+.popupOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(42, 36, 32, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.popupContent {
+  background: var(--warm-white);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  text-align: center;
+  position: relative;
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  border: 1px solid var(--linen);
+}
+
+.popupIcon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-xl);
+}
+
+.popupIcon.success {
+  background: rgba(122, 158, 126, 0.15);
+  color: var(--sage);
+}
+
+.popupIcon.error {
+  background: rgba(192, 83, 58, 0.15);
+  color: var(--terracotta);
+}
+
+.popupTitle {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  color: var(--bark);
+  margin-bottom: var(--space-sm);
+}
+
+.popupMessage {
+  color: var(--bark-light);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: var(--space-2xl);
+}
+
+.popupBtn {
+  width: 100%;
+  padding: 1.1rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+
+.popupBtn.success {
+  background: var(--sage);
+  color: white;
+}
+
+.popupBtn.success:hover {
+  background: var(--sage-dark);
+}
+
+.popupBtn.error {
+  background: var(--terracotta);
+  color: white;
+}
+
+.popupBtn.error:hover {
+  background: var(--terracotta-dark);
+}

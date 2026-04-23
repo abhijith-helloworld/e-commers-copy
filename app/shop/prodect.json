@@ -1,0 +1,158 @@
+{
+    "database_name": "Global Spice Encyclopedia",
+    "version": "1.0",
+    "entries": [
+        {
+            "id": 1,
+            "name": "Black Peppercorn",
+            "scientific_name": "Piper nigrum",
+            "flavor_profile": [
+                "Pungent",
+                "Woody",
+                "Piney"
+            ],
+            "origin": "South India",
+            "heat_level": "Mild-Medium",
+            "best_form": "Whole berry (grind fresh)",
+            "common_uses": [
+                "General seasoning",
+                "Steaks",
+                "Stocks"
+            ],
+            "shelf_life_months": 36
+        },
+        {
+            "id": 2,
+            "name": "Cumin",
+            "scientific_name": "Cuminum cyminum",
+            "flavor_profile": [
+                "Earthy",
+                "Musky",
+                "Warm"
+            ],
+            "origin": "Middle East",
+            "heat_level": "None",
+            "best_form": "Ground or toasted seed",
+            "common_uses": [
+                "Chili",
+                "Falafel",
+                "Taco seasoning"
+            ],
+            "shelf_life_months": 24
+        },
+        {
+            "id": 3,
+            "name": "Turmeric",
+            "scientific_name": "Curcuma longa",
+            "flavor_profile": [
+                "Bitter",
+                "Earthy",
+                "Gingery"
+            ],
+            "origin": "Southeast Asia",
+            "heat_level": "None",
+            "best_form": "Ground powder",
+            "common_uses": [
+                "Curries",
+                "Golden milk",
+                "Rice"
+            ],
+            "shelf_life_months": 24
+        },
+        {
+            "id": 4,
+            "name": "Saffron",
+            "scientific_name": "Crocus sativus",
+            "flavor_profile": [
+                "Floral",
+                "Honey-like",
+                "Grassy"
+            ],
+            "origin": "Iran/Greece",
+            "heat_level": "None",
+            "best_form": "Dried threads",
+            "common_uses": [
+                "Paella",
+                "Risotto",
+                "Bouillabaisse"
+            ],
+            "shelf_life_months": 12
+        },
+        {
+            "id": 5,
+            "name": "Star Anise",
+            "scientific_name": "Illicium verum",
+            "flavor_profile": [
+                "Licorice",
+                "Sweet",
+                "Pungent"
+            ],
+            "origin": "Vietnam/China",
+            "heat_level": "None",
+            "best_form": "Whole pods",
+            "common_uses": [
+                "Pho",
+                "Mulled wine",
+                "Five-spice"
+            ],
+            "shelf_life_months": 36
+        },
+        {
+            "id": 6,
+            "name": "Sumac",
+            "scientific_name": "Rhus coriaria",
+            "flavor_profile": [
+                "Tart",
+                "Lemon-like",
+                "Astringent"
+            ],
+            "origin": "Mediterranean",
+            "heat_level": "None",
+            "best_form": "Coarse powder",
+            "common_uses": [
+                "Fattoush salad",
+                "Hummus",
+                "Kebab garnish"
+            ],
+            "shelf_life_months": 18
+        },
+        {
+            "id": 7,
+            "name": "Cardamom (Green)",
+            "scientific_name": "Elettaria cardamomum",
+            "flavor_profile": [
+                "Herbal",
+                "Citrusy",
+                "Sweet"
+            ],
+            "origin": "India/Guatemala",
+            "heat_level": "None",
+            "best_form": "Whole pods or seeds",
+            "common_uses": [
+                "Chai tea",
+                "Swedish buns",
+                "Basmati rice"
+            ],
+            "shelf_life_months": 24
+        },
+        {
+            "id": 8,
+            "name": "Smoked Paprika",
+            "scientific_name": "Capsicum annuum",
+            "flavor_profile": [
+                "Smoky",
+                "Sweet",
+                "Rich"
+            ],
+            "origin": "Spain (Pimentón)",
+            "heat_level": "Mild",
+            "best_form": "Fine powder",
+            "common_uses": [
+                "Roasted potatoes",
+                "Chorizo",
+                "Deviled eggs"
+            ],
+            "shelf_life_months": 12
+        }
+    ]
+}
