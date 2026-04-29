@@ -16,7 +16,7 @@
   position: absolute;
   inset: 0;
   background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.05) 0%, transparent 60%),
-                    radial-gradient(circle at 80% 20%, rgba(228, 168, 50, 0.15) 0%, transparent 40%);
+                    radial-gradient(circle at 80% 20%, rgba(245, 245, 220, 0.15) 0%, transparent 40%);
 }
 
 .newsletterInner {

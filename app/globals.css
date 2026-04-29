@@ -8,23 +8,23 @@
 /* ── Design Tokens ── */
 :root {
   /* Colors */
-  --terracotta:       #C0533A;
-  --terracotta-dark:  #9E3D27;
-  --terracotta-light: #E06B50;
-  --turmeric:         #E4A832;
-  --turmeric-light:   #F0C060;
-  --turmeric-dark:    #C48A1A;
-  --sage:             #7A9E7E;
-  --sage-light:       #9AB89E;
-  --sage-dark:        #5A7E5E;
-  --cream:            #FAF6F0;
-  --cream-dark:       #F2EAE0;
-  --linen:            #EDE0CE;
-  --linen-dark:       #DDD0BC;
-  --bark:             #3C2A1E;
-  --bark-light:       #5E4235;
-  --warm-white:       #FFFDF9;
-  --charcoal:         #2A2420;
+  --terracotta:       #556B2F;
+  --terracotta-dark:  #3F5122;
+  --terracotta-light: #6E8344;
+  --turmeric:         #F5F5DC;
+  --turmeric-light:   #FCFCF0;
+  --turmeric-dark:    #E4E4C8;
+  --sage:             #6B7D45;
+  --sage-light:       #80945A;
+  --sage-dark:        #445724;
+  --cream:            #F5F5DC;
+  --cream-dark:       #ECECCF;
+  --linen:            #E3E3C7;
+  --linen-dark:       #D2D2B2;
+  --bark:             #333333;
+  --bark-light:       #4F4F4F;
+  --warm-white:       #FDFDF5;
+  --charcoal:         #333333;
 
   /* Typography */
   --font-serif:   'Playfair Display', Georgia, serif;
@@ -50,12 +50,12 @@
   --radius-full: 9999px;
 
   /* Shadows */
-  --shadow-sm:  0 1px 3px rgba(60, 42, 30, 0.08);
-  --shadow-md:  0 4px 20px rgba(60, 42, 30, 0.12);
-  --shadow-lg:  0 12px 40px rgba(60, 42, 30, 0.16);
-  --shadow-xl:  0 24px 64px rgba(60, 42, 30, 0.20);
-  --shadow-terracotta: 0 8px 30px rgba(192, 83, 58, 0.30);
-  --shadow-turmeric:   0 8px 30px rgba(228, 168, 50, 0.30);
+  --shadow-sm:  0 1px 3px rgba(51, 51, 51, 0.08);
+  --shadow-md:  0 4px 20px rgba(51, 51, 51, 0.12);
+  --shadow-lg:  0 12px 40px rgba(51, 51, 51, 0.16);
+  --shadow-xl:  0 24px 64px rgba(51, 51, 51, 0.20);
+  --shadow-terracotta: 0 8px 30px rgba(85, 107, 47, 0.30);
+  --shadow-turmeric:   0 8px 30px rgba(245, 245, 220, 0.30);
 
   /* Transitions */
   --transition-fast:   0.15s cubic-bezier(0.4, 0, 0.2, 1);

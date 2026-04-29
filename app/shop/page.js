@@ -34,7 +34,7 @@ const allProducts = encyclopediaData.entries.map((entry, idx) => {
 
 function StarRating({ rating }) {
   return (
-    <div style={{ display: 'flex', gap: '2px', color: '#E4A832' }} aria-label={`Rating: ${rating} out of 5`}>
+    <div style={{ display: 'flex', gap: '2px', color: '#556B2F' }} aria-label={`Rating: ${rating} out of 5`}>
       {[1, 2, 3, 4, 5].map(i => (
         <Star
           key={i}

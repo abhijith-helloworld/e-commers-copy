@@ -5,25 +5,29 @@ const features = [
     icon: '🌱',
     title: 'Certified Organic',
     desc: 'Every spice carries an organic certification. We work exclusively with farms that avoid synthetic pesticides and chemicals.',
-    color: 'sage',
+    color: 'olive',
+    number: '01',
   },
   {
     icon: '🤝',
     title: 'Direct Trade',
     desc: 'We source directly from 50+ family farms across 12 countries, ensuring fair pay and cutting out unnecessary middlemen.',
-    color: 'turmeric',
+    color: 'beige',
+    number: '02',
   },
   {
     icon: '🔬',
     title: 'Lab Tested',
     desc: 'Each batch undergoes rigorous third-party testing for purity, heavy metals, microbials, and curcumin/volatile oil content.',
-    color: 'terracotta',
+    color: 'charcoal',
+    number: '03',
   },
   {
     icon: '📦',
     title: 'Freshness Sealed',
     desc: 'Our airtight, UV-blocking packaging locks in potency for up to 24 months. Every jar is filled to order when possible.',
-    color: 'bark',
+    color: 'olive',
+    number: '04',
   },
 ]
 
@@ -33,6 +37,8 @@ export default function Features() {
       {/* Decorative background */}
       <div className={styles.bg}>
         <div className={styles.bgPattern} />
+        <div className={styles.bgGlow1} />
+        <div className={styles.bgGlow2} />
       </div>
 
       <div className="container">
@@ -72,11 +78,13 @@ export default function Features() {
               <div
                 key={f.title}
                 className={`${styles.card} ${styles[`card--${f.color}`]}`}
-                style={{ animationDelay: `${i * 0.1}s` }}
+                style={{ animationDelay: `${i * 0.15}s` }}
               >
+                <div className={styles.cardNumber}>{f.number}</div>
                 <div className={styles.cardIcon}>{f.icon}</div>
                 <h3 className={styles.cardTitle}>{f.title}</h3>
                 <p className={styles.cardDesc}>{f.desc}</p>
+                <div className={styles.cardAccent} />
               </div>
             ))}
           </div>

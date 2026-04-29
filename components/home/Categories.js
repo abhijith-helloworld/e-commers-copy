@@ -52,7 +52,7 @@ const categories = [
 export default function Categories() {
   return (
     <section className={styles.section} id="categories" aria-label="Shop by category">
-      <div className="container">
+      <div className={styles.container}>
         <div className={styles.header}>
           <span className={styles.eyebrow}>Explore the Collection</span>
           <h2 className={styles.title}>
@@ -61,13 +61,14 @@ export default function Categories() {
         </div>
 
         <div className={styles.grid}>
-          {categories.map((cat) => (
+          {categories.map((cat, index) => (
             <Link
               key={cat.id}
               href={cat.href}
               className={`${styles.card} ${styles[`card--${cat.color}`]}`}
               id={`category-${cat.id}`}
               aria-label={`Browse ${cat.name}`}
+              style={{ '--card-delay': `${index * 0.08}s` }}
             >
               <div className={styles.cardEmoji}>{cat.emoji}</div>
               
@@ -77,8 +78,8 @@ export default function Categories() {
                 <p className={styles.cardDesc}>{cat.desc}</p>
               </div>
 
-              <div className={styles.cardArrow}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className={styles.cardArrow} aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14"></path>
                   <path d="m12 5 7 7-7 7"></path>
                 </svg>

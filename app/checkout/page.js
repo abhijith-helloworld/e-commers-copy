@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ShieldCheck, CreditCard, Wallet, ArrowLeft, CheckCircle2, XCircle } from 'lucide-react'
 import { useCart } from '@/components/cart/CartProvider'
+import { isUserAuthenticated } from '@/lib/auth-session'
 import styles from './checkout.module.css'
 
 export default function CheckoutPage() {
@@ -20,12 +21,12 @@ export default function CheckoutPage() {
 
   // Auth Guard
   useEffect(() => {
-    const isLogged = localStorage.getItem('spicezone-auth') === 'true'
-    if (!isLogged) {
+    if (!isUserAuthenticated()) {
       router.push('/auth/login')
-    } else {
-      setIsAuthChecking(false)
+      return
     }
+
+    setIsAuthChecking(false)
   }, [router])
 
   const closePopup = () => {
@@ -95,7 +96,7 @@ export default function CheckoutPage() {
           contact: "9999999999",
         },
         theme: {
-          color: "#C0533A", // Terracotta styling
+          color: "#556B2F", // Olive styling
         },
       };
 

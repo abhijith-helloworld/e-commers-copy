@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 1100;
-  background: rgba(60, 42, 30, 0.5);
+  background: rgba(51, 51, 51, 0.5);
   backdrop-filter: blur(4px);
   animation: fadeIn 0.3s ease;
 }
@@ -247,7 +247,7 @@
 }
 
 .removeBtn:hover {
-  background: rgba(192, 83, 58, 0.1);
+  background: rgba(85, 107, 47, 0.1);
   color: var(--terracotta);
 }
 

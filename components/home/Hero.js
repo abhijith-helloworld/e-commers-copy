@@ -30,7 +30,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className={styles.bgWrapper}>
         <Image
-          src="/hero-spices.png"
+          src="/hero.jpeg"
           alt="Scattered whole organic spices including turmeric, star anise, cinnamon, cardamom, and saffron on cream linen"
           fill
           priority

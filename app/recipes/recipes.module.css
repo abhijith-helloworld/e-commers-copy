@@ -179,7 +179,7 @@
 .ctaBtn:hover {
   background: var(--turmeric-light);
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(228, 168, 50, 0.4);
+  box-shadow: 0 12px 40px rgba(245, 245, 220, 0.4);
 }
 
 @media (max-width: 900px) {

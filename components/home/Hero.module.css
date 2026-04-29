@@ -21,8 +21,8 @@
   background: linear-gradient(
     105deg,
     rgba(28, 16, 10, 0.85) 0%,
-    rgba(60, 42, 30, 0.70) 40%,
-    rgba(60, 42, 30, 0.35) 65%,
+    rgba(51, 51, 51, 0.70) 40%,
+    rgba(51, 51, 51, 0.35) 65%,
     transparent 100%
   );
   z-index: 1;
@@ -191,7 +191,7 @@
 .ctaPrimary:hover {
   background: var(--terracotta-light);
   transform: translateY(-3px);
-  box-shadow: 0 16px 48px rgba(192, 83, 58, 0.45);
+  box-shadow: 0 16px 48px rgba(85, 107, 47, 0.45);
   gap: var(--space-md);
 }
 
@@ -332,7 +332,7 @@
 .scrollIndicator:hover .scrollIcon {
   border-color: var(--turmeric);
   color: var(--turmeric);
-  background: rgba(228, 168, 50, 0.1);
+  background: rgba(245, 245, 220, 0.1);
 }
 
 /* Responsive */

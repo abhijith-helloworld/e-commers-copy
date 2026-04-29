@@ -14,7 +14,7 @@
   background: rgba(250, 246, 240, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 1px 0 rgba(60, 42, 30, 0.08), var(--shadow-sm);
+  box-shadow: 0 1px 0 rgba(51, 51, 51, 0.08), var(--shadow-sm);
 }
 
 .inner {
@@ -125,7 +125,7 @@
 
 .navLink:hover {
   color: var(--terracotta);
-  background: rgba(192, 83, 58, 0.06);
+  background: rgba(85, 107, 47, 0.06);
 }
 
 .navLink:hover::after {
@@ -194,6 +194,30 @@
   flex-shrink: 0;
 }
 
+.userMeta {
+  display: flex;
+  flex-direction: column;
+  max-width: 190px;
+  line-height: 1.1;
+}
+
+.userName {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--bark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userEmail {
+  font-size: 0.66rem;
+  color: var(--bark-light);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .iconBtn {
   display: flex;
   align-items: center;
@@ -207,8 +231,34 @@
 }
 
 .iconBtn:hover {
-  background: rgba(192, 83, 58, 0.08);
+  background: rgba(85, 107, 47, 0.08);
   color: var(--terracotta);
+}
+
+.logoutBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--linen);
+  background: var(--warm-white);
+  color: var(--terracotta);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.logoutBtn:hover {
+  background: var(--cream);
+  border-color: var(--terracotta);
+}
+
+.logoutBtn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
 }
 
 .cartBtn {
@@ -225,7 +275,7 @@
 }
 
 .cartBtn:hover {
-  background: rgba(192, 83, 58, 0.08);
+  background: rgba(85, 107, 47, 0.08);
   color: var(--terracotta);
 }
 
@@ -263,12 +313,18 @@
 .ctaBtn:hover {
   background: var(--terracotta-dark);
   transform: translateY(-1px);
-  box-shadow: 0 10px 36px rgba(192, 83, 58, 0.4);
+  box-shadow: 0 10px 36px rgba(85, 107, 47, 0.4);
 }
 
 .ctaBtn:active { transform: translateY(0); }
 
 @media (max-width: 1024px) { .ctaBtn { display: none; } }
+
+@media (max-width: 1180px) {
+  .userMeta {
+    display: none;
+  }
+}
 
 /* ── Mobile Toggle ── */
 .mobileToggle {
@@ -283,7 +339,7 @@
 }
 
 .mobileToggle:hover {
-  background: rgba(192, 83, 58, 0.08);
+  background: rgba(85, 107, 47, 0.08);
   color: var(--terracotta);
 }
 
@@ -298,11 +354,15 @@
   z-index: 999;
   pointer-events: none;
   visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--transition-slow), visibility 0s linear var(--transition-slow);
 }
 
 .mobileMenuOpen {
   pointer-events: auto;
   visibility: visible;
+  opacity: 1;
+  transition: opacity var(--transition-slow), visibility 0s linear 0s;
 }
 
 .mobileMenuInner {
@@ -328,6 +388,27 @@
 
 .mobileLogoRow {
   padding-top: var(--space-md);
+}
+
+.mobileUserCard {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--linen);
+  border-radius: var(--radius-md);
+  background: var(--cream);
+}
+
+.mobileUserName {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--bark);
+}
+
+.mobileUserEmail {
+  font-size: 0.78rem;
+  color: var(--bark-light);
 }
 
 .mobileNav {
@@ -368,6 +449,28 @@
 
 .mobileCta { margin-top: auto; }
 
+.mobileLogoutBtn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--linen);
+  background: var(--warm-white);
+  color: var(--terracotta);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mobileLogoutBtn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
 .mobileCtaBtn {
   display: block;
   text-align: center;
@@ -387,7 +490,24 @@
   position: fixed;
   inset: 0;
   z-index: 998;
-  background: rgba(60, 42, 30, 0.50);
+  background: rgba(51, 51, 51, 0.50);
   backdrop-filter: blur(4px);
-  animation: fadeIn 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--transition-slow), visibility 0s linear var(--transition-slow);
+}
+
+.mobileOverlayOpen {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity var(--transition-slow), visibility 0s linear 0s;
+}
+
+@media (min-width: 901px) {
+  .mobileMenu,
+  .mobileOverlay {
+    display: none !important;
+  }
 }

@@ -1,10 +1,18 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { ShoppingBag, Menu, X, ChevronDown, User } from 'lucide-react'
+import { ShoppingBag, Menu, X, ChevronDown, User, LogOut } from 'lucide-react'
 import { useCart } from '@/components/cart/CartProvider'
 import CartDrawer from '@/components/cart/CartDrawer'
+import {
+  AUTH_CHANGE_EVENT,
+  clearAuthSession,
+  fetchLoggedInUserProfile,
+  getStoredAuthUser,
+  isUserAuthenticated,
+  logoutUserFromServer,
+} from '@/lib/auth-session'
 import styles from './Navbar.module.css'
 
 const navLinks = [
@@ -20,34 +28,117 @@ const navLinks = [
   { label: 'Our Story', href: '/about' },
 ]
 
+const getUserDisplayName = (user) => {
+  if (!user || typeof user !== 'object') return 'My Account'
+
+  const fullName = [user.firstname, user.lastname].filter(Boolean).join(' ').trim()
+  return user.username || fullName || user.email || 'My Account'
+}
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
+
   const [activeDropdown, setActiveDropdown] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isAuthResolved, setIsAuthResolved] = useState(false)
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
+  const [userProfile, setUserProfile] = useState(null)
   const { totalItems, setIsCartOpen } = useCart()
 
   useEffect(() => {
+    let isMounted = true
+
     const handleScroll = () => setIsScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll, { passive: true })
-    
-    // Auth Listener
-    setTimeout(() => setIsLoggedIn(localStorage.getItem('spicezone-auth') === 'true'), 0)
-    const handleAuthChange = () => setIsLoggedIn(localStorage.getItem('spicezone-auth') === 'true')
-    window.addEventListener('auth-change', handleAuthChange)
+
+    const syncAuthState = async () => {
+      const authenticated = isUserAuthenticated()
+      if (!isMounted) return
+
+      setIsLoggedIn(authenticated)
+
+      if (!authenticated) {
+        setUserProfile(null)
+        setIsAuthResolved(true)
+        return
+      }
+
+      setIsAuthResolved(true)
+
+      const cachedUser = getStoredAuthUser()
+      if (cachedUser) {
+        setUserProfile(cachedUser)
+      }
+
+      try {
+        const profile = await fetchLoggedInUserProfile()
+        if (!isMounted) return
+        setUserProfile(profile)
+      } catch (error) {
+        if (!isMounted) return
+
+        if (error?.status === 401) {
+          clearAuthSession()
+          setUserProfile(null)
+          return
+        }
+
+        if (!cachedUser) {
+          setUserProfile(null)
+        }
+      }
+    }
+
+    const handleAuthChange = () => {
+      void syncAuthState()
+    }
+
+    void syncAuthState()
+    window.addEventListener(AUTH_CHANGE_EVENT, handleAuthChange)
 
     return () => {
+      isMounted = false
       window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('auth-change', handleAuthChange)
+      window.removeEventListener(AUTH_CHANGE_EVENT, handleAuthChange)
     }
   }, [])
 
+  const handleLogout = async () => {
+    if (isLoggingOut) return
+    setIsLoggingOut(true)
 
+    try {
+      await logoutUserFromServer()
+    } catch (error) {
+      // Keep UX smooth: even if server logout fails, clear local session.
+      console.error('Logout API error:', error)
+    } finally {
+      clearAuthSession()
+      setIsLoggedIn(false)
+      setUserProfile(null)
+      setIsAuthResolved(true)
+      setIsLoggingOut(false)
+      setIsMobileOpen(false)
+    }
+  }
 
   useEffect(() => {
     document.body.style.overflow = isMobileOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [isMobileOpen])
+
+  useEffect(() => {
+    const closeMenuOnDesktop = () => {
+      if (window.innerWidth > 900) {
+        setIsMobileOpen(false)
+      }
+    }
+
+    closeMenuOnDesktop()
+    window.addEventListener('resize', closeMenuOnDesktop, { passive: true })
+    return () => window.removeEventListener('resize', closeMenuOnDesktop)
+  }, [])
 
   return (
     <>
@@ -97,7 +188,6 @@ export default function Navbar() {
           {/* Right Actions */}
           <div className={styles.actions}>
 
-
             {/* Cart */}
             <button
               className={styles.cartBtn}
@@ -113,24 +203,31 @@ export default function Navbar() {
               )}
             </button>
 
+            {isLoggedIn && userProfile && (
+              <div className={styles.userMeta} aria-live="polite">
+                <span className={styles.userName}>{getUserDisplayName(userProfile)}</span>
+                {userProfile.email && <span className={styles.userEmail}>{userProfile.email}</span>}
+              </div>
+            )}
+
             {/* Auth Component directly next to CTA */}
-            {isLoggedIn ? (
-              <button 
-                className={styles.iconBtn} 
-                onClick={() => {
-                  localStorage.removeItem('spicezone-auth')
-                  window.dispatchEvent(new Event('auth-change'))
-                }}
-                aria-label="Logout"
-                style={{ color: 'var(--terracotta)' }}
-                title="Logout"
-              >
-                <User size={20} />
-              </button>
-            ) : (
-              <Link href="/auth/login" className={styles.iconBtn} aria-label="Sign in" title="Sign In">
-                <User size={20} />
-              </Link>
+            {isAuthResolved && (
+              isLoggedIn ? (
+                <button
+                  className={styles.logoutBtn}
+                  onClick={handleLogout}
+                  aria-label="Logout"
+                  title="Logout"
+                  disabled={isLoggingOut}
+                >
+                  <LogOut size={16} />
+                  <span>{isLoggingOut ? 'Logging out...' : 'Logout'}</span>
+                </button>
+              ) : (
+                <Link href="/auth/login" className={styles.iconBtn} aria-label="Sign in" title="Sign In">
+                  <User size={20} />
+                </Link>
+              )
             )}
 
             {/* CTA */}
@@ -164,6 +261,13 @@ export default function Navbar() {
             </Link>
           </div>
 
+          {isLoggedIn && userProfile && (
+            <div className={styles.mobileUserCard}>
+              <span className={styles.mobileUserName}>{getUserDisplayName(userProfile)}</span>
+              {userProfile.email && <span className={styles.mobileUserEmail}>{userProfile.email}</span>}
+            </div>
+          )}
+
           <nav className={styles.mobileNav}>
             {navLinks.map((link) => (
               <div key={link.label}>
@@ -193,6 +297,18 @@ export default function Navbar() {
           </nav>
 
           <div className={styles.mobileCta}>
+            {isAuthResolved && isLoggedIn && (
+              <button
+                type="button"
+                className={styles.mobileLogoutBtn}
+                onClick={handleLogout}
+                disabled={isLoggingOut}
+              >
+                <LogOut size={16} />
+                <span>{isLoggingOut ? 'Logging out...' : 'Logout'}</span>
+              </button>
+            )}
+
             <Link href="/shop" className={styles.mobileCtaBtn} onClick={() => setIsMobileOpen(false)}>
               Shop All Spices
             </Link>
@@ -200,9 +316,11 @@ export default function Navbar() {
         </div>
       </div>
 
-      {isMobileOpen && (
-        <div className={styles.mobileOverlay} onClick={() => setIsMobileOpen(false)} aria-hidden="true" />
-      )}
+      <div
+        className={`${styles.mobileOverlay} ${isMobileOpen ? styles.mobileOverlayOpen : ''}`}
+        onClick={() => setIsMobileOpen(false)}
+        aria-hidden={!isMobileOpen}
+      />
 
       <CartDrawer />
     </>
